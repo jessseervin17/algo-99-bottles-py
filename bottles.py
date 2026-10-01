@@ -19,8 +19,8 @@ def bottle_song(beer_count, lyrics): #function to verify beer is within reasonab
         song_lyrics = lyrics
         beer_number = beer_count
         your_lyrics = generate_bottle_lyrics(beer_number, song_lyrics)
-        print(your_lyrics)
-        return your_lyrics
+    print(your_lyrics)
+    return your_lyrics
         
 
 print(bottle_song(3, ""))
