@@ -1,23 +1,27 @@
-
-def bottle_song(beer_count):
-    lyrics = ""
-    if beer_count>99:
-        return print("Lets not get too drunk buddy.")
-    elif beer_count <0:
-        return print("C'mon, we need to have a little fun!")
+def generate_bottle_lyrics(beer_count, lyrics): #function to generate song lyrics
+    if beer_count>1:
+        new_lyrics = lyrics + f"Take one down and pass it around, {beer_count} bottles of beer on the wall. \n{beer_count} bottles of beer on the wall, {beer_count} bottles of beer.\n"
+        beer_number = beer_count - 1
+        generate_bottle_lyrics(beer_number, new_lyrics)
+    elif beer_count == 1:
+        new_lyrics = lyrics + f"Take one down and pass it around, {beer_count} bottle of beer on the wall. \n{beer_count} bottle of beer on the wall, {beer_count} bottle of beer.\n"
+        beer_number = beer_count - 1
+        generate_bottle_lyrics(beer_number, new_lyrics)
     else:
-        while beer_count >= 0:
-            if beer_count>1:
-                lyrics += f"Take one down and pass it around, {beer_count} bottles of beer on the wall. \n{beer_count} bottles of beer on the wall, {beer_count} bottles of beer on the wall.\n"
-                beer_count -= 1
-            elif beer_count == 1:
-                lyrics += f"Take one down and pass it around, {beer_count} bottle of beer on the wall. \n{beer_count} bottle of beer on the wall, {beer_count} bottle of beer on the wall.\n"
-                beer_count -= 1
-            elif beer_count ==0:
-                lyrics += f"Take one down and pass it around, no more bottles of beer on the wall.\nNo more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall."
-                beer_count-=1
-    return lyrics
+        new_lyrics = lyrics + "Take one down and pass it around, no more bottles of beer on the wall.\nNo more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall."
+        print(new_lyrics)
+        return new_lyrics
+    
+def bottle_song(beer_count, lyrics): #function to verify beer is within reasonable range
+    if beer_count>99:
+        return "The wall doesn't have that much room..."
+    elif beer_count <0:
+        return "C'mon, we need to have a little fun!"
+    else:
+        song_lyrics = lyrics
+        beer_num = beer_count
+        return print(generate_bottle_lyrics(beer_num, song_lyrics))
 
-bottle_song(8)
+print(bottle_song(3, ""))
 
 
